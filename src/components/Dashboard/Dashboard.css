@@ -1,0 +1,39 @@
+body {
+    --theme-green: #4caf50;
+    background: #e5ddd5;
+    margin: 20px;
+    font-family: "Open Sans", sans-serif;
+}
+
+.dropdown-list {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.heading {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 22px;
+}
+
+.no-data {
+    text-align: center;
+    font-style: italic;
+    opacity: 0.7;
+    margin: 30px;
+}
+
+/* ScrollBar START */
+::-webkit-scrollbar {
+    width: 5px;
+    cursor: pointer;
+}
+
+::-webkit-scrollbar-track {
+    background: #1c1c1c;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--theme-green);
+}
