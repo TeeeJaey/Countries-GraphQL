@@ -18,18 +18,6 @@ export default function Dashboard() {
 
     const [list, setList] = useState<IList[]>([]);
 
-    useEffect(() => {
-        ApiService.fetchAllContinents().then(res => {
-            console.log("Continents: ", res);
-            setContinents(res.continents);
-        });
-
-        ApiService.fetchAllLanguages().then(res => {
-            console.log("Languages: ", res);
-            setLanguages(res.languages);
-        });
-    }, []);
-
     const onSelectContinent = (continent: IContinent) => {
         if (continent.code === selectedContinent.code) {
             return;
@@ -69,6 +57,18 @@ export default function Dashboard() {
         setList(list);
         console.log(list);
     };
+
+    useEffect(() => {
+        ApiService.fetchAllContinents().then(res => {
+            console.log("Continents: ", res);
+            setContinents(res.continents);
+        });
+
+        ApiService.fetchAllLanguages().then(res => {
+            console.log("Languages: ", res);
+            setLanguages(res.languages);
+        });
+    }, []);
 
     return (
         <div data-testid="dashboard">

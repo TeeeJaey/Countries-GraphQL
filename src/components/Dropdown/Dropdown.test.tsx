@@ -10,7 +10,7 @@ describe("Dropdown", () => {
         onSelect: (item: IItem) => {},
     };
 
-    it("should render", async () => {
+    it("should render", () => {
         act(async () => {
             const component = render(<Dropdown {...props} />);
             await waitFor(() => {
@@ -20,7 +20,7 @@ describe("Dropdown", () => {
         });
     });
 
-    it("should render and display list", async () => {
+    it("should render and display list", () => {
         act(async () => {
             const component = render(<Dropdown {...props} />);
 

@@ -1,9 +1,12 @@
 import Dashboard from "./Dashboard";
-import { render, waitFor } from "@testing-library/react";
-import { act } from "react-dom/test-utils";
+import { act, render, waitFor } from "@testing-library/react";
+import { ApiService } from "../../services/ApiService";
+import { testContinents } from "../../constants/TestConstants";
 
 describe("Dashboard", () => {
-    it("should render", async () => {
+    it("should render", () => {
+        ApiService.fetchAllContinents = jest.fn().mockResolvedValue(testContinents);
+
         act(async () => {
             const component = render(<Dashboard />);
             await waitFor(() => {
