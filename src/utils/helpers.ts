@@ -42,3 +42,6 @@ export const onSelectLanguage = (filter: IFilter, language: ILanguage): IFilter 
 
     return newFilter;
 };
+
+export const filterCountriesByLanguage = (countries: ICountry[], language: ILanguage): ICountry[] =>
+    countries.filter(country => country.languages.some(lang => lang.code === language.code));

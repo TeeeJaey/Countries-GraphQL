@@ -5,7 +5,7 @@ import { ICountry, ILanguage, IContinent, IList, IFilter } from "../../utils/Int
 import Dropdown from "../Dropdown/Dropdown";
 import "./Dashboard.css";
 import List from "../List/List";
-import { onSelectContinent, onSelectCountry, onSelectLanguage } from "../../utils/helpers";
+import { filterCountriesByLanguage, onSelectContinent, onSelectCountry, onSelectLanguage } from "../../utils/helpers";
 
 export default function Dashboard() {
     const [continents, setContinents] = useState<IContinent[]>([]);
@@ -43,7 +43,7 @@ export default function Dashboard() {
     /* Set display list on change of language */
     useEffect(() => {
         if (!filter?.language?.code) return;
-        setList(countries.filter(country => country.languages.some(lang => lang.code === filter.language.code)));
+        setList(filterCountriesByLanguage(countries, filter.language));
     }, [filter.language]);
 
     return (
