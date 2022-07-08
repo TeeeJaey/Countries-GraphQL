@@ -20,7 +20,9 @@
     font-size: 18px;
     width: 300px;
 }
-
+.dropbtn.default {
+    background: #1e5620;
+}
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
     display: none;

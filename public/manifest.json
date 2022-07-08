@@ -1,6 +1,6 @@
 {
-    "short_name": "Countries",
-    "name": "Continents & Countries",
+    "short_name": "GraphQL-Countries",
+    "name": "GraphQL-Countries",
     "icons": [],
     "start_url": ".",
     "display": "standalone",

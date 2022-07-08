@@ -1,8 +1,18 @@
-body {
+:root {
     --theme-green: #4caf50;
+}
+
+body {
     background: #e5ddd5;
     margin: 20px;
     font-family: "Open Sans", sans-serif;
+}
+
+.loading-gif {
+    display: flex;
+    height: 150px;
+    margin: auto;
+    margin-top: 200px;
 }
 
 .dropdown-list {

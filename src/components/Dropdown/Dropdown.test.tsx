@@ -5,8 +5,8 @@ import { IItem } from "../../utils/Interfaces";
 
 describe("Dropdown", () => {
     const props = {
-        list: testCountries.countries,
-        selected: testCountries.countries[0],
+        list: testCountries,
+        selected: testCountries[0],
         onSelect: (item: IItem) => {},
     };
 
@@ -27,7 +27,7 @@ describe("Dropdown", () => {
             await waitFor(() => {
                 fireEvent.mouseOver(component.getByRole("button"));
                 const items = component.getAllByTestId("dropdown-items");
-                expect(items.length).toBe(testCountries.countries.length);
+                expect(items.length).toBe(testCountries.length);
             });
         });
     });

@@ -15,6 +15,11 @@ export interface ILanguage extends IItem {
 
 export interface IList extends ILanguage {}
 
+export interface IFilter {
+    continent: IContinent;
+    country: ICountry;
+    language: ILanguage;
+}
 /* PROPS interfaces */
 
 export interface IDropdownPropsType {

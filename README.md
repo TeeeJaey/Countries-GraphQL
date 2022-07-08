@@ -1,4 +1,4 @@
-# Countries in GraphQL
+# GraphQL-Countries
 
 A simple UI to call graphQL server shown in below URL... \
 https://countries.trevorblades.com

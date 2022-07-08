@@ -1,9 +1,14 @@
 export const QueryConstants = {
-    fetchAllContinents: `
+    fetchInitData: `
         query {
             continents {
                 code,
                 name
+            },
+            languages {
+                code,
+                name,
+                native
             }
         }
     `,
@@ -21,16 +26,6 @@ export const QueryConstants = {
                         native
                     }
                 }
-            }
-        }
-    `,
-
-    fetchAllLanguages: `
-        query {
-            languages {
-                code,
-                name,
-                native
             }
         }
     `,
