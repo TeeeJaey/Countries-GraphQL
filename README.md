@@ -1,6 +1,7 @@
 # Countries in GraphQL
 
-A simple UI to call graphQL server shown in below URL\
+A simple UI to call graphQL server shown in below URL... \
+https://countries.trevorblades.com
 
 ## Available Scripts
 
