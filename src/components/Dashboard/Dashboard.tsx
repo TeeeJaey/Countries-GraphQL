@@ -5,7 +5,7 @@ import Dropdown from "../Dropdown/Dropdown";
 import ApiService from "../../services/ApiService";
 import { DefaultFilter } from "../../constants/DefaultStateConstants";
 import { ICountry, ILanguage, IContinent, IList, IFilter } from "../../utils/Interfaces";
-import { filterCountriesByLanguage } from "../../utils/helpers";
+import { filterCountriesByLanguage } from "../../utils/Utilities";
 
 /**
  * Main dashboard component includes all other components
