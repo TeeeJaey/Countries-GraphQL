@@ -5,7 +5,7 @@ import Dropdown from "../Dropdown/Dropdown";
 import ApiService from "../../services/ApiService";
 import { DefaultFilter } from "../../constants/DefaultStateConstants";
 import { ICountry, ILanguage, IContinent, IList, IFilter } from "../../utils/Interfaces";
-import { onSelectContinent, filterCountriesByLanguage } from "../../utils/helpers";
+import { filterCountriesByLanguage } from "../../utils/helpers";
 
 /**
  * Main dashboard component includes all other components
@@ -22,6 +22,7 @@ export default function Dashboard() {
 
     // #region - Initial API call for continents and Languages
     useEffect(() => {
+        if (continents?.length > 0) return;
         ApiService.fetchInitData().then(res => {
             setContinents(res.continents);
             setLanguages(res.languages);
@@ -32,7 +33,6 @@ export default function Dashboard() {
     // #region - API call to get countries on change of continent
     useEffect(() => {
         if (!filter?.continent?.code) return;
-        setList([]);
         ApiService.fetchCountriesFromContinent(filter.continent).then(res => {
             setCountries(res.continent.countries);
         });
@@ -62,7 +62,10 @@ export default function Dashboard() {
                         <Dropdown
                             list={continents}
                             selected={filter.continent}
-                            onSelect={(continent: IContinent) => setFilter(onSelectContinent(filter, continent))}
+                            onSelect={(continent: IContinent) => {
+                                setFilter({ ...DefaultFilter, continent });
+                                setList([]);
+                            }}
                         />
                     </div>
 
