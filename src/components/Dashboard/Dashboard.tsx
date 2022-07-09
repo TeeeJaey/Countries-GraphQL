@@ -22,7 +22,6 @@ export default function Dashboard() {
 
     // #region - Initial API call for continents and Languages
     useEffect(() => {
-        if (continents?.length > 0) return;
         ApiService.fetchInitData().then(res => {
             setContinents(res.continents);
             setLanguages(res.languages);
