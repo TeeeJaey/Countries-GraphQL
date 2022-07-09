@@ -18,5 +18,6 @@ export const onSelectContinent = (filter: IFilter, continent: IContinent): IFilt
 };
 
 export const filterCountriesByLanguage = (countries: ICountry[], language: ILanguage): ICountry[] => {
+    if (!language?.code) return countries;
     return countries.filter(country => country.languages.some(lang => lang.code === language.code));
 };
