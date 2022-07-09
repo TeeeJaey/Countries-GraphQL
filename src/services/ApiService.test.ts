@@ -16,7 +16,7 @@ describe("ApiService", () => {
         const fetch = jest.spyOn(ApiService as any, "fetch");
         fetch.mockResolvedValue({ countries: testCountries });
 
-        ApiService.fetchInitData().then(res => {
+        ApiService.fetchCountriesFromContinent(testContinents[0]).then(res => {
             expect(res.countries).toBe(testCountries);
         });
     });

@@ -1,19 +1,17 @@
-export const testContinents = {
-    continents: [
-        {
-            name: "Test Continent 1",
-            code: "C1",
-        },
-        {
-            name: "Test Continent 2",
-            code: "C2",
-        },
-        {
-            name: "Test Continent 3",
-            code: "C3",
-        },
-    ],
-};
+export const testContinents = [
+    {
+        name: "Test Continent 1",
+        code: "C1",
+    },
+    {
+        name: "Test Continent 2",
+        code: "C2",
+    },
+    {
+        name: "Test Continent 3",
+        code: "C3",
+    },
+];
 
 export const testLanugages = [
     {
