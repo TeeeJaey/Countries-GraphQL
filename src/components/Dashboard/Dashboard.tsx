@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { DefaultFilter } from "../../constants/DefaultStateConstants";
-import ApiService from "../../services/ApiService";
-import { ICountry, ILanguage, IContinent, IList, IFilter } from "../../utils/Interfaces";
-import Dropdown from "../Dropdown/Dropdown";
 import "./Dashboard.css";
 import List from "../List/List";
-import { filterCountriesByLanguage, onSelectContinent, onSelectCountry, onSelectLanguage } from "../../utils/helpers";
+import Dropdown from "../Dropdown/Dropdown";
+import ApiService from "../../services/ApiService";
+import { DefaultFilter } from "../../constants/DefaultStateConstants";
+import { ICountry, ILanguage, IContinent, IList, IFilter } from "../../utils/Interfaces";
+import { onSelectContinent, filterCountriesByLanguage } from "../../utils/helpers";
 
+/**
+ * Main dashboard component includes all other components
+ * and the States to handle data for the app
+ * @returns JSX
+ */
 export default function Dashboard() {
     const [continents, setContinents] = useState<IContinent[]>([]);
     const [countries, setCountries] = useState<ICountry[]>([]);
@@ -15,36 +20,38 @@ export default function Dashboard() {
     const [filter, setFilter] = useState<IFilter>(DefaultFilter);
     const [list, setList] = useState<IList[]>([]);
 
-    /* Initial API call for continents and Languages */
+    // #region - Initial API call for continents and Languages
     useEffect(() => {
         ApiService.fetchInitData().then(res => {
-            console.log("Continents: ", res.continents);
-            console.log("Languages: ", res.languages);
             setContinents(res.continents);
             setLanguages(res.languages);
         });
     }, []);
+    // #endregion
 
-    /* API call to get countries on change of continent */
+    // #region - API call to get countries on change of continent
     useEffect(() => {
         if (!filter?.continent?.code) return;
+        setList([]);
         ApiService.fetchCountriesFromContinent(filter.continent).then(res => {
-            console.log("Countries: ", res.continent.countries);
             setCountries(res.continent.countries);
         });
-    }, [filter.continent]);
+    }, [filter.continent.code]);
+    // #endregion
 
-    /* Set display list on change of country */
+    // #region - Set display list on change of country
     useEffect(() => {
         if (!filter?.country?.code) return;
         setList(filter.country.languages);
-    }, [filter.country]);
+    }, [filter.country.code]);
+    // #endregion
 
-    /* Set display list on change of language */
+    // #region - Set display list on change of language
     useEffect(() => {
         if (!filter?.language?.code) return;
         setList(filterCountriesByLanguage(countries, filter.language));
-    }, [filter.language]);
+    }, [filter.language.code]);
+    // #endregion
 
     return (
         <div data-testid="dashboard">
@@ -55,37 +62,36 @@ export default function Dashboard() {
                         <Dropdown
                             list={continents}
                             selected={filter.continent}
-                            onSelect={(item: IContinent) => setFilter(onSelectContinent(filter, item))}
+                            onSelect={(continent: IContinent) => setFilter(onSelectContinent(filter, continent))}
                         />
                     </div>
+
                     <div className="dropdown-list">
                         {filter?.continent?.code && (
                             <>
                                 <Dropdown
                                     list={countries}
                                     selected={filter.country}
-                                    onSelect={(item: ICountry) => setFilter(onSelectCountry(filter, item))}
+                                    onSelect={(country: ICountry) => setFilter({ ...filter, country, language: DefaultFilter.language })}
                                 />
                                 <Dropdown
                                     list={languages}
                                     selected={filter.language}
-                                    onSelect={(item: ILanguage) => setFilter(onSelectLanguage(filter, item))}
+                                    onSelect={(language: ILanguage) => setFilter({ ...filter, country: DefaultFilter.country, language })}
                                 />
                             </>
                         )}
                     </div>
 
-                    <hr />
+                    <hr className="hr-line" />
 
                     {filter?.country?.code && <span className="heading">Languages</span>}
                     {filter?.language?.code && <span className="heading">Countries</span>}
 
                     {list.length > 0 ? (
                         <List list={list} />
-                    ) : filter?.country?.code || filter?.language?.code ? (
-                        <div className="no-data">No Data</div>
                     ) : (
-                        <></>
+                        filter?.country?.code || (filter?.language?.code && <div className="no-data">No Data</div>)
                     )}
                 </>
             ) : (

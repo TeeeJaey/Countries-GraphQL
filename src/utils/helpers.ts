@@ -17,31 +17,6 @@ export const onSelectContinent = (filter: IFilter, continent: IContinent): IFilt
     return newFilter;
 };
 
-export const onSelectCountry = (filter: IFilter, country: ICountry): IFilter => {
-    if (country.code === filter.country.code) {
-        return filter;
-    }
-    const newFilter = { ...filter };
-    newFilter.country = country;
-    if (newFilter?.language?.code) {
-        newFilter.language = DefaultFilter.language;
-    }
-
-    return newFilter;
+export const filterCountriesByLanguage = (countries: ICountry[], language: ILanguage): ICountry[] => {
+    return countries.filter(country => country.languages.some(lang => lang.code === language.code));
 };
-
-export const onSelectLanguage = (filter: IFilter, language: ILanguage): IFilter => {
-    if (language.code === filter.language.code) {
-        return filter;
-    }
-    const newFilter = { ...filter };
-    newFilter.language = language;
-    if (newFilter?.country?.code) {
-        newFilter.country = DefaultFilter.country;
-    }
-
-    return newFilter;
-};
-
-export const filterCountriesByLanguage = (countries: ICountry[], language: ILanguage): ICountry[] =>
-    countries.filter(country => country.languages.some(lang => lang.code === language.code));

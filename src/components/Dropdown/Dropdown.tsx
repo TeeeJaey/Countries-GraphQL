@@ -1,7 +1,14 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { IDropdownPropsType, IItem } from "../../utils/Interfaces";
 import "./Dropdown.css";
 
+/**
+ * Function compenent to show a dropdown
+ * @param list | list of items having code and name
+ * @param selected | currently selected item
+ * @param onSelect | function called - when an item in the dropdown is clicked
+ * @returns JSX
+ */
 export default function Dropdown({ list, selected, onSelect }: IDropdownPropsType) {
     const btnDefaultClass = selected?.code ? "" : " default";
 

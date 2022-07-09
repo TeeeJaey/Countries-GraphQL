@@ -20,8 +20,8 @@ export interface IFilter {
     country: ICountry;
     language: ILanguage;
 }
-/* PROPS interfaces */
 
+/* PROPS interfaces */
 export interface IDropdownPropsType {
     list: any[];
     selected: { name: string; code?: string };
